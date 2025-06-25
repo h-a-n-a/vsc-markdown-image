@@ -1,160 +1,105 @@
 # Markdown Image
 
-An extension for conveniently inserting pictures in Markdown, which supports storing pictures in local or third-party CDN service.
+A specialized fork of [imlinhanchao/vsc-markdown-image](https://github.com/imlinhanchao/vsc-markdown-image) that focuses exclusively on GitHub image uploads with project scope management.
 
-❤ [Sponsor me](https://www.paypal.me/imlinhanchao) / [赞助开发者](http://sponsor.hancel.org)
+**Upload to [rspack-contrib/rstack-design-resources](https://github.com/rspack-contrib/rstack-design-resources) by default.**
 
-## Features
+## ✨ Features
 
-1. Copy image files or paste screenshots, Shortcut key `Alt + Shift + V`, or right-click menu `Paste Image`.
-2. Automatically generate Markdown code insertion.
-3. Configurable to support `Imgur`, `Qiniu`, `SM.MS`, `Cloudflare`, `Cloudinary`, `S3`, `Azure Storage` and other CDN service. The default is local, you need to open the folder where the Markdown file is located.
-4. You can also customize the code to upload pictures.
-5. Support Windows, MacOS, Linux.
+- **GitHub Only**: Streamlined to only support GitHub uploads
+- **Project Scopes**: Organize images by project (rspack, rsbuild, rsdoctor, etc.)
+- **Smart Token Management**: Automatic GitHub token setup with browser integration
+- **Easy Upload**: `Alt + Shift + V` to upload clipboard images
 
-## Requirements
+## 🚀 Quick Start
 
-Linux users must install xclip.
+1. **Install Extension** from VSCode marketplace
+2. **Set GitHub Token**: Extension will guide you through token creation
+3. **Choose Scope**: Select your project scope in settings
+4. **Upload Images**: Copy image → Press `Alt + Shift + V` → Auto-insert markdown
 
-Ubuntu
+Default uploads to `/{scope}/assets/` in [rstack-design-resources](https://github.com/rspack-contrib/rstack-design-resources), accessible via [assets.rspack.rs](https://assets.rspack.rs).
 
-```bash
-sudo apt install xclip
-```
+## ⚙️ Project Scopes
 
-CentOS
+Choose the appropriate scope for your project:
 
-```bash
-sudo yum install epel-release.noarch
-sudo yum install xclip
-```
+| Scope      | Description               | Upload Path Example          |
+| ---------- | ------------------------- | ---------------------------- |
+| `rspack`   | Rspack related projects   | `/rspack/assets/image.png`   |
+| `rsbuild`  | Rsbuild related projects  | `/rsbuild/assets/image.png`  |
+| `rsdoctor` | Rsdoctor related projects | `/rsdoctor/assets/image.png` |
+| `rslib`    | Rslib related projects    | `/rslib/assets/image.png`    |
+| `rspress`  | Rspress related projects  | `/rspress/assets/image.png`  |
+| `rstack`   | Rstack related projects   | `/rstack/assets/image.png`   |
+| `rstest`   | Rstest related projects   | `/rstest/assets/image.png`   |
+| `others`   | Other projects            | `/others/assets/image.png`   |
 
-## Notice
+## 🔧 Configuration
 
-If you want to use in the Remote Mode, please set `remote.extensionKind` like this:
+### Required Settings
+
+- `markdown-image.github.token`: GitHub personal access token
+- `markdown-image.github.scope`: Project scope (default: `rspack`)
+
+### Optional Settings
+
+- `markdown-image.github.path`: Upload path (default: `/assets/`)
+- `markdown-image.github.repository`: Target repository (default: rstack-design-resources)
+- `markdown-image.github.cdn`: CDN URL (default: `https://assets.rspack.dev/${filepath}`)
+
+## ⚙️ Default Configuration
+
+The extension comes with the following default settings:
 
 ```json
-"remote.extensionKind": {
-  "hancel.markdown-image": [
-    "ui"
-  ]
+{
+  // Base Settings
+  "markdown-image.base.uploadMethod": "GitHub",
+  "markdown-image.base.uploadMethods": [],
+  "markdown-image.base.codeType": "Markdown",
+  "markdown-image.base.codeFormat": "![${alt}](${src})",
+  "markdown-image.base.imageWidth": 0,
+  "markdown-image.base.fileNameFormat": "${filename}-${timestamp}",
+  "markdown-image.base.altFormat": "picture ${index}",
+  "markdown-image.base.urlEncode": true,
+  "markdown-image.base.fileFormat": "png",
+
+  // GitHub Settings
+  "markdown-image.github.scope": "rspack",
+  "markdown-image.github.path": "/assets/",
+  "markdown-image.github.token": "",
+  "markdown-image.github.repository": "https://github.com/rspack-contrib/rstack-design-resources",
+  "markdown-image.github.branch": "main",
+  "markdown-image.github.cdn": "https://assets.rspack.dev/${filepath}",
+  "markdown-image.github.httpProxy": ""
 }
 ```
 
-And if you want to save image in your remote workplace, you must use `SFTP` upload method. `Local` couldn't use in Remote Mode.
+## 🔒 GitHub Token Setup
 
-## Extension Settings
+1. Go to [GitHub Settings > Tokens](https://github.com/settings/personal-access-tokens/new)
+2. Create **Fine-grained token** with **Contents** permission
+3. Extension will automatically prompt for token if missing
 
-### Base Settings
+## 📋 Requirements
 
-- `markdown-image.base.uploadMethod`: Method to upload pictures. To the local or another picture CDN service.
-- `markdown-image.base.uploadMethods`: The upload method for parallel upload. The upload results of the upload method set here will not be inserted into the Markdown file.
-- `markdown-image.base.fileNameFormat`: The filename format for upload. Not Support in `Imgur` and `SM.MS`. You can use some variables. You can find more in setting.
-- `markdown-image.base.codeType`: The type of image code, you can set to `<img>` tag or markdown
-- `markdown-image.base.codeFormat`: Insert code format, effective when `markdown-image.base.codeType` is set to `DIY`.
-- `markdown-image.base.imageWidth`: The maximum width of the image, if the image is greater than this width, the width is set to this value. Set to 0 means not change.
-- `markdown-image.base.urlEncode`: Whether URL encode for the url of image.
+**Linux users**: Install `xclip`
 
-### Local Settings
+```bash
+# Ubuntu/Debian
+sudo apt install xclip
 
-- `markdown-image.local.path`: Picture storage directory that in the local (automatically created if it does not exist).
-- `markdown-image.local.referencePath`: The reference path format in markdown(not include file name). Empty means use relative path. You can use variable of `#markdown-image.base.fileNameFormat#` in here. For example: `/images/${YY}-${MM}/`
+# CentOS/RHEL
+sudo yum install xclip
+```
 
-### GitHub Settings
+## 📜 Original Project
 
-- `markdown-image.github.path`: Picture upload directory that in the repository (automatically created if it does not exist). The repository must initialization first.
-- `markdown-image.github.token`: GitHub person [access token](https://github.com/settings/tokens).
-- `markdown-image.github.repository`: GitHub repository, for example: `https://github.com/username/repository`
-- `markdown-image.github.branch`: GitHub repository branch to save.
-- `markdown-image.github.cdn`: The github cdn address format to be used, `${username}` is the username of `markdown-image.github.repository`, and `${repository}` is the repository name. `${branch}` is the value of `markdown-image.github.branch`. `${filepath}` is the upload path in repository.
-- `markdown-image.github.httpProxy`: Connect to Github via http proxy.
+Fork of [vsc-markdown-image](https://github.com/imlinhanchao/vsc-markdown-image) by [imlinhanchao](https://github.com/imlinhanchao).
 
-### Imgur Settings
+**Changes**: Removed all upload services except GitHub, added project scope management, enhanced token handling.
 
-- `markdown-image.imgur.clientId`: The client id registered with imgur. You can registed it at [here](https://api.imgur.com/oauth2/addclient).
-- `markdown-image.imgur.httpProxy`: Connect to Imgur via http proxy.
+## 📄 License
 
-### SM.MS Settings
-
-- `markdown-image.sm_ms.token`: SM.MS API token (Options). You can register an account and then visit [API Token](https://sm.ms/home/apitoken) Page to generate secret token.
-
-### Qiniu Settings
-
-- `markdown-image.qiniu.accessKey`: The Access Key of account.
-- `markdown-image.qiniu.secretKey`: The Secret Key of account.
-- `markdown-image.qiniu.bucket`: The storage name.
-- `markdown-image.qiniu.domain`: Bound domain name of storage.
-- `markdown-image.qiniu.zone`: Zone of storage.
-
-### Upyun Settings
-
-- `markdown-image.upyun.bucket`: Storge name of upload.
-- `markdown-image.upyun.domain`: Domain bind with storge name.
-- `markdown-image.upyun.operator`: Operator of upyun.
-- `markdown-image.upyun.password`: Password of upyun operator.
-- `markdown-image.upyun.path`: The path that img store.
-- `markdown-image.upyun.link`: The link that connect to upyun.
-
-### Cloudinary Settings
-
-These values can be found on your Cloudinary Dashboard
-
-- `markdown-image.cloudinary.cloudName`: Your user account name.
-- `markdown-image.cloudinary.apiKey`: API key for your account.
-- `markdown-image.cloudinary.apiSecret`: API secret for your account.
-- `markdown-image.cloudinary.folder`: Folder to upload the image to.
-
-### Cloudflare Settings
-
-These values can be found on your Cloudflare dashboard
-
-- `markdown-image.cloudflare.accountId`: Your account ID.
-- `markdown-image.cloudflare.apiToken`: Cloudflare Images API token.
-
-### S3 Settings
-
-These values can be found in your S3 service provider dashboard
-
-- `markdown-image.s3.endpoint`: The endpoint for S3 API, can be obtained from bucket setting.
-- `markdown-image.s3.region`: The region for the S3 bucket, can be obtained from bucket setting.
-- `markdown-image.s3.bucketName`: The name of the S3 bucket to upload images to. Access to the bucket should be public.
-- `markdown-image.s3.accessKeyId`: Your S3 API access key ID.
-- `markdown-image.s3.secretAccessKey`: Your S3 secret access key.
-- `markdown-image.s3.cdn`: Your S3 CDN Url. You can use variable `${bucket}` `${region}` `${pathname}` and `${filepath}`. For example: `https://${bucket}.${region}.s3.amazonaws.com/${pathname}/${filepath}`.
-
-### SFTP Settings
-
-- `markdown-image.sftp.host`: The host of the remote server.
-- `markdown-image.sftp.port`: The ssh port of the remote server.
-- `markdown-image.sftp.username`: The username of the remote server.
-- `markdown-image.sftp.password`: The password of the remote server.
-- `markdown-image.sftp.privateKeyPath`: The private key path of the remote server.
-- `markdown-image.sftp.path`: Picture storage directory that in the remote (automatically created if it does not exist). Notice: You can't use variable in here. You can use variable in `#markdown-image.base.fileNameFormat#`.
-- `markdown-image.sftp.referencePath`: The reference path format in markdown(not include file name). Empty means use relative path. You can use variable of `#markdown-image.base.fileNameFormat#` in here. For example: `/images/${YY}-${MM}/`
-
-### Azure Storage Settings
-
-- `markdown-image.azure.authenticationMethod`: The authentication method to use for the Azure Blob Storage account. The default is `Passwordless`. You can obtain more information from [here](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs?tabs=managed-identity%2Croles-azure-portal%2Csign-in-azure-cli#authenticate-to-azure-and-authorize-access-to-blob-data).
-- `markdown-image.azure.accountName`: Your Azure Blob Storage account.
-- `markdown-image.azure.connectionString`: The connection string of the Azure Storage account.
-- `markdown-image.azure.container`: The name of the container to upload images to.
-
-### DIY Settings
-
-- `markdown-image.DIY.path`: The Code Path what you write. Your code must exports a function as `async function (filePath:string, savePath:string, markdownPath:string):string`.
-  For example:
-  ```javascript
-  const path = require('path');
-  module.exports = async function (filePath, savePath, markdownPath) {
-    // Return a picture access link
-    return path.relative(path.dirname(markdownPath), filePath);
-  };
-  ```
-
-### Others
-
-- [GitHub](https://github.com/imlinhanchao/vsc-markdown-image)
-- [VSCode Market](https://marketplace.visualstudio.com/items?itemName=hancel.markdown-image)
-- Icons made by [Good Ware](https://www.flaticon.com/authors/good-ware) from [www.flaticon.com](https://www.flaticon.com/)
-
-**Enjoy!**
+MIT License
