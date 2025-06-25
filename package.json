@@ -11,9 +11,7 @@
     "Picture",
     "cdn",
     "markdown",
-    "imgur",
-    "七牛",
-    "sm.ms",
+    "github",
     "helper"
   ],
   "icon": "asserts/icon.png",
@@ -113,34 +111,10 @@
           "markdown-image.base.uploadMethod": {
             "default": "Local",
             "enum": [
-              "Local",
-              "GitHub",
-              "Imgur",
-              "SM.MS",
-              "Data URL",
-              "%markdown-image.qiniu%",
-              "%markdown-image.upyun%",
-              "Cloudinary",
-              "Cloudflare",
-              "S3",
-              "SFTP",
-              "Azure Storage",
-              "%markdown-image.DIY%"
+              "GitHub"
             ],
             "enumDescriptions": [
-              "%markdown-image.base.uploadMethod.Local%",
-              "%markdown-image.base.uploadMethod.GitHub%",
-              "%markdown-image.base.uploadMethod.Imgur%",
-              "%markdown-image.base.uploadMethod.SM.MS%",
-              "%markdown-image.base.uploadMethod.DataURL%",
-              "%markdown-image.base.uploadMethod.Qiniu%",
-              "%markdown-image.base.uploadMethod.Upyun%",
-              "%markdown-image.base.uploadMethod.Cloudinary%",
-              "%markdown-image.base.uploadMethod.Cloudflare%",
-              "%markdown-image.base.uploadMethod.S3%",
-              "%markdown-image.base.uploadMethod.SFTP%",
-              "%markdown-image.base.uploadMethod.Azure%",
-              "%markdown-image.base.uploadMethod.DIY%"
+              "%markdown-image.base.uploadMethod.GitHub%"
             ],
             "markdownDescription": "%markdown-image.base.uploadMethod%",
             "order": 0,
@@ -154,19 +128,7 @@
             "items": {
               "type": "string",
               "enum": [
-                "Local",
-                "GitHub",
-                "Imgur",
-                "SM.MS",
-                "Data URL",
-                "%markdown-image.qiniu%",
-                "%markdown-image.upyun%",
-                "Cloudinary",
-                "Cloudflare",
-                "S3",
-                "SFTP",
-                "Azure Storage",
-                "%markdown-image.DIY%"
+                "GitHub"
               ]
             }
           },
@@ -191,23 +153,6 @@
       },
       {
         "properties": {
-          "markdown-image.local.path": {
-            "default": "/images",
-            "markdownDescription": "%markdown-image.local.path%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.local.referencePath": {
-            "default": "",
-            "markdownDescription": "%markdown-image.local.referencePath%",
-            "order": 1,
-            "type": "string"
-          }
-        },
-        "title": "Local"
-      },
-      {
-        "properties": {
           "markdown-image.github.branch": {
             "default": "master",
             "markdownDescription": "%markdown-image.github.branch%",
@@ -215,19 +160,19 @@
             "type": "string"
           },
           "markdown-image.github.cdn": {
-            "default": "https://cdn.jsdelivr.net/gh/${username}/${repository}@${branch}/${filepath}",
+            "default": "https://assets.rspack.dev/assets/${filepath}",
             "markdownDescription": "%markdown-image.github.cdn%",
             "order": 4,
             "type": "string"
           },
           "markdown-image.github.path": {
-            "default": "/",
+            "default": "/rspack/assets/",
             "markdownDescription": "%markdown-image.github.path%",
             "order": 0,
             "type": "string"
           },
           "markdown-image.github.repository": {
-            "default": "",
+            "default": "https://github.com/rspack-contrib/rstack-design-resources",
             "markdownDescription": "%markdown-image.github.repository%",
             "order": 2,
             "pattern": "^(https://github.com/[^/]*?/[^/]*?/*|)$",
@@ -247,312 +192,6 @@
           }
         },
         "title": "GitHub"
-      },
-      {
-        "properties": {
-          "markdown-image.imgur.clientId": {
-            "default": "",
-            "markdownDescription": "%markdown-image.imgur.clientId%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.imgur.httpProxy": {
-            "default": "",
-            "markdownDescription": "%markdown-image.imgur.httpProxy%",
-            "order": 1,
-            "type": "string"
-          }
-        },
-        "title": "Imgur"
-      },
-      {
-        "properties": {
-          "markdown-image.sm_ms.token": {
-            "default": "",
-            "markdownDescription": "%markdown-image.sm_ms.token%",
-            "order": 0,
-            "type": "string"
-          }
-        },
-        "title": "SM.MS"
-      },
-      {
-        "properties": {
-          "markdown-image.qiniu.accessKey": {
-            "default": "",
-            "markdownDescription": "%markdown-image.qiniu.accessKey%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.qiniu.bucket": {
-            "default": "",
-            "markdownDescription": "%markdown-image.qiniu.bucket%",
-            "order": 2,
-            "type": "string"
-          },
-          "markdown-image.qiniu.domain": {
-            "default": "",
-            "markdownDescription": "%markdown-image.qiniu.domain%",
-            "order": 3,
-            "pattern": "^(http(s|)://[a-zA-Z0-9][-\\w]{0,62}(.[a-zA-Z0-9][-\\w]{0,62})+.|)?",
-            "type": "string"
-          },
-          "markdown-image.qiniu.secretKey": {
-            "default": "",
-            "markdownDescription": "%markdown-image.qiniu.secretKey%",
-            "order": 1,
-            "type": "string"
-          },
-          "markdown-image.qiniu.zone": {
-            "default": "East China",
-            "enum": [
-              "%markdown-image.qiniu.east%",
-              "%markdown-image.qiniu.north%",
-              "%markdown-image.qiniu.south%",
-              "%markdown-image.qiniu.na%",
-              "%markdown-image.qiniu.sa%"
-            ],
-            "markdownDescription": "%markdown-image.qiniu.zone%",
-            "order": 4,
-            "type": "string"
-          }
-        },
-        "title": "Qiniu"
-      },
-      {
-        "properties": {
-          "markdown-image.upyun.bucket": {
-            "default": "",
-            "markdownDescription": "%markdown-image.upyun.bucket%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.upyun.domain": {
-            "default": "",
-            "markdownDescription": "%markdown-image.upyun.domain%",
-            "order": 1,
-            "pattern": "^(http(s|)://[a-zA-Z0-9][-\\w]{0,62}(.[a-zA-Z0-9][-\\w]{0,62})+.|)?",
-            "type": "string"
-          },
-          "markdown-image.upyun.link": {
-            "default": "%markdown-image.upyun.smart%",
-            "enum": [
-              "%markdown-image.upyun.smart%",
-              "%markdown-image.upyun.telecom%",
-              "%markdown-image.upyun.unicom%",
-              "%markdown-image.upyun.mobile%"
-            ],
-            "markdownDescription": "%markdown-image.upyun.link%",
-            "order": 5,
-            "type": "string"
-          },
-          "markdown-image.upyun.operator": {
-            "default": "",
-            "markdownDescription": "%markdown-image.upyun.operator%",
-            "order": 2,
-            "type": "string"
-          },
-          "markdown-image.upyun.password": {
-            "default": "",
-            "markdownDescription": "%markdown-image.upyun.password%",
-            "order": 3,
-            "type": "string"
-          },
-          "markdown-image.upyun.path": {
-            "default": "",
-            "markdownDescription": "%markdown-image.upyun.path%",
-            "order": 4,
-            "type": "string"
-          }
-        },
-        "title": "Upyun"
-      },
-      {
-        "properties": {
-          "markdown-image.cloudinary.apiKey": {
-            "default": "",
-            "markdownDescription": "%markdown-image.cloudinary.apiKey%",
-            "order": 1,
-            "type": "string"
-          },
-          "markdown-image.cloudinary.apiSecret": {
-            "default": "",
-            "markdownDescription": "%markdown-image.cloudinary.apiSecret%",
-            "order": 2,
-            "type": "string"
-          },
-          "markdown-image.cloudinary.cloudName": {
-            "default": "",
-            "markdownDescription": "%markdown-image.cloudinary.cloudName%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.cloudinary.folder": {
-            "default": "",
-            "markdownDescription": "%markdown-image.cloudinary.folder%",
-            "order": 3,
-            "type": "string"
-          }
-        },
-        "title": "Cloudinary"
-      },
-      {
-        "properties": {
-          "markdown-image.cloudflare.accountId": {
-            "default": "",
-            "markdownDescription": "%markdown-image.cloudflare.accountId%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.cloudflare.apiToken": {
-            "default": "",
-            "markdownDescription": "%markdown-image.cloudflare.apiToken%",
-            "order": 1,
-            "type": "string"
-          }
-        },
-        "title": "Cloudflare"
-      },
-      {
-        "properties": {
-          "markdown-image.s3.accessKeyId": {
-            "default": "",
-            "markdownDescription": "%markdown-image.s3.accessKeyId%",
-            "order": 3,
-            "type": "string"
-          },
-          "markdown-image.s3.bucketName": {
-            "default": "",
-            "markdownDescription": "%markdown-image.s3.bucketName%",
-            "order": 2,
-            "type": "string"
-          },
-          "markdown-image.s3.endpoint": {
-            "default": "",
-            "markdownDescription": "%markdown-image.s3.endpoint%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.s3.region": {
-            "default": "",
-            "markdownDescription": "%markdown-image.s3.region%",
-            "order": 1,
-            "type": "string"
-          },
-          "markdown-image.s3.secretAccessKey": {
-            "default": "",
-            "markdownDescription": "%markdown-image.s3.secretAccessKey%",
-            "order": 4,
-            "type": "string"
-          },
-          "markdown-image.s3.cdn": {
-            "default": "",
-            "markdownDescription": "%markdown-image.s3.cdn%",
-            "order": 5,
-            "type": "string"
-          },
-          "markdown-image.s3.config": {
-            "markdownDescription": "%markdown-image.s3.config%",
-            "order": 6,
-            "type": "object"
-          }
-        },
-        "title": "S3"
-      },
-      {
-        "properties": {
-          "markdown-image.sftp.host": {
-            "default": "",
-            "markdownDescription": "%markdown-image.sftp.host%",
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.sftp.port": {
-            "default": 22,
-            "markdownDescription": "%markdown-image.sftp.port%",
-            "order": 1,
-            "type": "number"
-          },
-          "markdown-image.sftp.username": {
-            "default": "",
-            "markdownDescription": "%markdown-image.sftp.username%",
-            "order": 2,
-            "type": "string"
-          },
-          "markdown-image.sftp.password": {
-            "default": "",
-            "markdownDescription": "%markdown-image.sftp.password%",
-            "order": 3,
-            "type": "string"
-          },
-          "markdown-image.sftp.privateKeyPath": {
-            "default": "",
-            "markdownDescription": "%markdown-image.sftp.privateKeyPath%",
-            "order": 4,
-            "type": "string"
-          },
-          "markdown-image.sftp.path": {
-            "default": "/images",
-            "markdownDescription": "%markdown-image.sftp.path%",
-            "order": 5,
-            "type": "string"
-          },
-          "markdown-image.sftp.referencePath": {
-            "default": "",
-            "markdownDescription": "%markdown-image.sftp.referencePath%",
-            "order": 6,
-            "type": "string"
-          }
-        },
-        "title": "SFTP"
-      },
-      {
-        "properties": {
-          "markdown-image.azure.authenticationMethod": {
-            "default": "Passwordless",
-            "markdownDescription": "%markdown-image.azure.authenticationMethod%",
-            "enum": [
-              "Passwordless",
-              "Connection String"
-            ],
-            "enumDescriptions": [
-              "%markdown-image.azure.authenticationMethod.Passwordless%",
-              "%markdown-image.azure.authenticationMethod.ConnectionString%"
-            ],
-            "order": 0,
-            "type": "string"
-          },
-          "markdown-image.azure.accountName": {
-            "default": "",
-            "markdownDescription": "%markdown-image.azure.accountName%",
-            "order": 1,
-            "type": "string"
-          },
-          "markdown-image.azure.connectionString": {
-            "default": "",
-            "markdownDescription": "%markdown-image.azure.connect-string%",
-            "order": 2,
-            "type": "string"
-          },
-          "markdown-image.azure.container": {
-            "default": "",
-            "markdownDescription": "%markdown-image.azure.container%",
-            "order": 3,
-            "type": "string"
-          }
-        },
-        "title": "Azure Storage"
-      },
-      {
-        "properties": {
-          "markdown-image.DIY.path": {
-            "default": "",
-            "markdownDescription": "%markdown-image.DIY.path%",
-            "order": 0,
-            "type": "string"
-          }
-        },
-        "title": "DIY"
       }
     ]
   },
@@ -569,18 +208,11 @@
     "@types/node": "^8.10.25",
     "@types/node-fetch": "^2.5.12",
     "@types/turndown": "^5.0.0",
-    "@types/ssh2-sftp-client": "^9.0.0",
     "tslint": "^5.8.0",
     "typescript": "4.1",
     "vscode": "^1.1.25"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.304.0",
-    "@aws-sdk/s3-request-presigner": "^3.304.0",
-    "@azure/identity": "^4.0.1",
-    "@azure/storage-blob": "^12.17.0",
-    "cloudinary": "^1.26.1",
-    "coding-picbed": "^0.0.13",
     "form-data": "^3.0.1",
     "github-picbed": "^0.0.7",
     "got": "^10.7.0",
@@ -589,11 +221,9 @@
     "mime": "^3.0.0",
     "node-fetch": "^2.6.6",
     "png-to-jpeg": "^1.0.1",
-    "qiniu": "^7.3.1",
-    "ssh2-sftp-client": "^9.0.4",
     "turndown": "^7.0.0",
     "turndown-plugin-gfm": "^1.0.2",
-    "upyun": "^3.4.6",
     "vscode-nls": "^4.1.2"
-  }
+  },
+  "packageManager": "pnpm@8.14.3+sha512.c3ed80eb583be3e2b7ef31eb96b8b9cfaa0503e5d44ec717514120b5187b2f933736e9038c51a5a23ad582790ba41d4ab784618c89fa7e2365f6665685d612ee"
 }
