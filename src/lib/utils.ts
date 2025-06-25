@@ -16,20 +16,8 @@ let locale = i18n();
 
 function getUpload(uploadMethod: string, config: any): Upload | null {
   switch (uploadMethod) {
-    case 'Local':
-      return new Uploads.Local(config);
     case 'GitHub':
       return new Uploads.GitHub(config);
-    case 'Data URL':
-      return new Uploads.DataUrl(config);
-    case 'DIY':
-      return new Uploads.Define(config);
-    case '本地':
-      return new Uploads.Local(config);
-    case '自定义':
-      return new Uploads.Define(config);
-    case '自定義':
-      return new Uploads.Define(config);
   }
   return null;
 }

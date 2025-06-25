@@ -90,7 +90,7 @@
             "type": "string"
           },
           "markdown-image.base.fileNameFormat": {
-            "default": "${hash}",
+            "default": "${filename}-${timestamp}",
             "markdownDescription": "%markdown-image.base.fileNameFormat%",
             "order": 5,
             "pattern": "^[^:*?<>|]+$",
@@ -109,7 +109,7 @@
             "type": "number"
           },
           "markdown-image.base.uploadMethod": {
-            "default": "Local",
+            "default": "GitHub",
             "enum": [
               "GitHub"
             ],
@@ -154,40 +154,56 @@
       {
         "properties": {
           "markdown-image.github.branch": {
-            "default": "master",
+            "default": "main",
             "markdownDescription": "%markdown-image.github.branch%",
-            "order": 3,
-            "type": "string"
-          },
-          "markdown-image.github.cdn": {
-            "default": "https://assets.rspack.dev/assets/${filepath}",
-            "markdownDescription": "%markdown-image.github.cdn%",
             "order": 4,
             "type": "string"
           },
-          "markdown-image.github.path": {
-            "default": "/rspack/assets/",
-            "markdownDescription": "%markdown-image.github.path%",
+          "markdown-image.github.cdn": {
+            "default": "https://assets.rspack.dev/${filepath}",
+            "markdownDescription": "%markdown-image.github.cdn%",
+            "order": 5,
+            "type": "string"
+          },
+          "markdown-image.github.scope": {
+            "default": "rspack",
+            "enum": [
+              "others",
+              "rsbuild",
+              "rsdoctor",
+              "rslib",
+              "rspack",
+              "rspress",
+              "rstack",
+              "rstest"
+            ],
+            "markdownDescription": "%markdown-image.github.scope%",
             "order": 0,
+            "type": "string"
+          },
+          "markdown-image.github.path": {
+            "default": "/assets/",
+            "markdownDescription": "%markdown-image.github.path%",
+            "order": 1,
             "type": "string"
           },
           "markdown-image.github.repository": {
             "default": "https://github.com/rspack-contrib/rstack-design-resources",
             "markdownDescription": "%markdown-image.github.repository%",
-            "order": 2,
+            "order": 3,
             "pattern": "^(https://github.com/[^/]*?/[^/]*?/*|)$",
             "type": "string"
           },
           "markdown-image.github.token": {
             "default": "",
             "markdownDescription": "%markdown-image.github.token%",
-            "order": 1,
+            "order": 2,
             "type": "string"
           },
           "markdown-image.github.httpProxy": {
             "default": "",
             "markdownDescription": "%markdown-image.github.httpProxy%",
-            "order": 5,
+            "order": 6,
             "type": "string"
           }
         },
