@@ -75,8 +75,9 @@ class GitHub implements Upload {
             });
 
             if (token && token.trim()) {
-              const config =
-                vscode.workspace.getConfiguration('markdown-image');
+              const config = vscode.workspace.getConfiguration(
+                'rstack-markdown-image'
+              );
               await config.update(
                 'github.token',
                 token.trim(),
@@ -127,7 +128,7 @@ class GitHub implements Upload {
         } else if (result === $l['open_settings']) {
           vscode.commands.executeCommand(
             'workbench.action.openSettings',
-            'markdown-image.github.token'
+            'rstack-markdown-image.github.token'
           );
           return null;
         } else {
@@ -142,7 +143,7 @@ class GitHub implements Upload {
         vscode.window.showErrorMessage($l['github_repository_missing']);
         vscode.commands.executeCommand(
           'workbench.action.openSettings',
-          'markdown-image.github.repository'
+          'rstack-markdown-image.github.repository'
         );
         return null;
       }
@@ -193,7 +194,7 @@ class GitHub implements Upload {
         } else if (result === $l['open_settings']) {
           vscode.commands.executeCommand(
             'workbench.action.openSettings',
-            'markdown-image.github.token'
+            'rstack-markdown-image.github.token'
           );
         }
       } else {

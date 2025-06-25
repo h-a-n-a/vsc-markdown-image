@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
   let uploads: Upload[] = getUploadInstance(config);
 
   let pasteCommand = vscode.commands.registerCommand(
-    'markdown-image.paste',
+    'rstack-markdown-image.paste',
     async () => {
       let stop = () => {};
       try {
@@ -191,11 +191,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(pasteCommand);
 
   let configCommand = vscode.commands.registerCommand(
-    'markdown-image.config',
+    'rstack-markdown-image.config',
     () => {
       vscode.commands.executeCommand(
         'workbench.action.openSettings',
-        'markdown-image'
+        'rstack-markdown-image'
       );
     }
   );
@@ -203,7 +203,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(configCommand);
 
   let richTextCommand = vscode.commands.registerCommand(
-    'markdown-image.paste-rich-text',
+    'rstack-markdown-image.paste-rich-text',
     async () => {
       let stop = () => {};
       try {

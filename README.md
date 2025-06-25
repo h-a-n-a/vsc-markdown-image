@@ -40,14 +40,35 @@ Choose the appropriate scope for your project:
 
 ### Required Settings
 
-- `markdown-image.github.token`: GitHub personal access token
-- `markdown-image.github.scope`: Project scope (default: `rspack`)
+- `rstack-markdown-image.github.token`: GitHub personal access token
+- `rstack-markdown-image.github.scope`: Project scope (default: `rspack`)
 
 ### Optional Settings
 
-- `markdown-image.github.path`: Upload path (default: `/assets/`)
-- `markdown-image.github.repository`: Target repository (default: rstack-design-resources)
-- `markdown-image.github.cdn`: CDN URL (default: `https://assets.rspack.dev/${filepath}`)
+- `rstack-markdown-image.github.path`: Upload path (default: `/assets/`)
+- `rstack-markdown-image.github.repository`: Target repository (default: rstack-design-resources)
+- `rstack-markdown-image.github.cdn`: CDN URL (default: `https://assets.rspack.dev/${filepath}`)
+
+### 🔐 Repository Access & Fork Setup
+
+If you don't have write permissions to the default `rspack-contrib/rstack-design-resources` repository, you can fork it and use your own fork:
+
+1. **Fork the Repository**: Go to [rstack-design-resources](https://github.com/rspack-contrib/rstack-design-resources) and click "Fork"
+
+2. **Update Repository Setting**: In VSCode settings, change the repository URL:
+
+   ```json
+   "rstack-markdown-image.github.repository": "https://github.com/YOUR_USERNAME/rstack-design-resources"
+   ```
+
+3. **Create GitHub Token**: Ensure your token has **Contents** permission for your forked repository
+
+4. **Update CDN URL** (optional): If you want to use a different CDN or GitHub raw URLs:
+   ```json
+   "rstack-markdown-image.github.cdn": "https://raw.githubusercontent.com/YOUR_USERNAME/rstack-design-resources/main/${filepath}"
+   ```
+
+> **💡 Tip**: Using your own fork allows you to have full control over the uploaded images and can serve as a backup solution if the main repository is unavailable.
 
 ## ⚙️ Default Configuration
 
@@ -56,26 +77,26 @@ The extension comes with the following default settings:
 ```json
 {
   // Base Settings
-  "markdown-image.base.uploadMethod": "GitHub",
-  "markdown-image.base.uploadMethods": [],
-  "markdown-image.base.codeType": "Markdown",
-  "markdown-image.base.codeFormat": "![${alt}](${src})",
-  "markdown-image.base.imageWidth": 0,
-  "markdown-image.base.fileNameFormat": "${filename}-${timestamp}",
-  "markdown-image.base.altFormat": "picture ${index}",
-  "markdown-image.base.urlEncode": true,
-  "markdown-image.base.fileFormat": "png",
-  "markdown-image.base.compressEnabled": true,
-  "markdown-image.base.compressQuality": 80,
+  "rstack-markdown-image.base.uploadMethod": "GitHub",
+  "rstack-markdown-image.base.uploadMethods": [],
+  "rstack-markdown-image.base.codeType": "Markdown",
+  "rstack-markdown-image.base.codeFormat": "![${alt}](${src})",
+  "rstack-markdown-image.base.imageWidth": 0,
+  "rstack-markdown-image.base.fileNameFormat": "${filename}-${timestamp}",
+  "rstack-markdown-image.base.altFormat": "picture ${index}",
+  "rstack-markdown-image.base.urlEncode": true,
+  "rstack-markdown-image.base.fileFormat": "png",
+  "rstack-markdown-image.base.compressEnabled": true,
+  "rstack-markdown-image.base.compressQuality": 80,
 
   // GitHub Settings
-  "markdown-image.github.scope": "rspack",
-  "markdown-image.github.path": "/assets/",
-  "markdown-image.github.token": "",
-  "markdown-image.github.repository": "https://github.com/rspack-contrib/rstack-design-resources",
-  "markdown-image.github.branch": "main",
-  "markdown-image.github.cdn": "https://assets.rspack.dev/${filepath}",
-  "markdown-image.github.httpProxy": ""
+  "rstack-markdown-image.github.scope": "rspack",
+  "rstack-markdown-image.github.path": "/assets/",
+  "rstack-markdown-image.github.token": "",
+  "rstack-markdown-image.github.repository": "https://github.com/rspack-contrib/rstack-design-resources",
+  "rstack-markdown-image.github.branch": "main",
+  "rstack-markdown-image.github.cdn": "https://assets.rspack.dev/${filepath}",
+  "rstack-markdown-image.github.httpProxy": ""
 }
 ```
 

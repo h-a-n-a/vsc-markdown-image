@@ -27,24 +27,24 @@
   "contributes": {
     "commands": [
       {
-        "command": "markdown-image.paste",
-        "category": "Markdown Image",
-        "title": "%markdown-image.command.paste%"
+        "command": "rstack-markdown-image.paste",
+        "category": "Rstack Markdown Image",
+        "title": "%rstack-markdown-image.command.paste%"
       },
       {
-        "command": "markdown-image.config",
-        "category": "Markdown Image",
-        "title": "%markdown-image.command.config%"
+        "command": "rstack-markdown-image.config",
+        "category": "Rstack Markdown Image",
+        "title": "%rstack-markdown-image.command.config%"
       },
       {
-        "command": "markdown-image.paste-rich-text",
-        "category": "Markdown Image",
-        "title": "%markdown-image.command.paste-rich-text%"
+        "command": "rstack-markdown-image.paste-rich-text",
+        "category": "Rstack Markdown Image",
+        "title": "%rstack-markdown-image.command.paste-rich-text%"
       }
     ],
     "keybindings": [
       {
-        "command": "markdown-image.paste",
+        "command": "rstack-markdown-image.paste",
         "key": "alt+shift+v",
         "mac": "alt+shift+v",
         "when": "editorLangId == markdown || editorLangId == mdx || resourceExtname == .ipynb"
@@ -53,12 +53,12 @@
     "menus": {
       "editor/context": [
         {
-          "command": "markdown-image.paste",
+          "command": "rstack-markdown-image.paste",
           "when": "editorLangId == markdown || editorLangId == mdx || resourceExtname == .ipynb",
           "group": "9_cutcopypaste@4"
         },
         {
-          "command": "markdown-image.paste-rich-text",
+          "command": "rstack-markdown-image.paste-rich-text",
           "when": "editorLangId == markdown || editorLangId == mdx || resourceExtname == .ipynb",
           "group": "9_cutcopypaste@5"
         }
@@ -67,7 +67,7 @@
     "configuration": [
       {
         "properties": {
-          "markdown-image.base.codeType": {
+          "rstack-markdown-image.base.codeType": {
             "default": "Markdown",
             "enum": [
               "Markdown",
@@ -75,54 +75,54 @@
               "DIY"
             ],
             "enumDescriptions": [
-              "%markdown-image.base.codeType.Markdown%",
-              "%markdown-image.base.codeType.HTML%",
-              "%markdown-image.base.codeType.DIY%"
+              "%rstack-markdown-image.base.codeType.Markdown%",
+              "%rstack-markdown-image.base.codeType.HTML%",
+              "%rstack-markdown-image.base.codeType.DIY%"
             ],
-            "markdownDescription": "%markdown-image.base.codeType%",
+            "markdownDescription": "%rstack-markdown-image.base.codeType%",
             "order": 2,
             "type": "string"
           },
-          "markdown-image.base.codeFormat": {
+          "rstack-markdown-image.base.codeFormat": {
             "default": "![${alt}](${src})",
-            "markdownDescription": "%markdown-image.base.codeFormat%",
+            "markdownDescription": "%rstack-markdown-image.base.codeFormat%",
             "order": 3,
             "type": "string"
           },
-          "markdown-image.base.fileNameFormat": {
+          "rstack-markdown-image.base.fileNameFormat": {
             "default": "${filename}-${timestamp}",
-            "markdownDescription": "%markdown-image.base.fileNameFormat%",
+            "markdownDescription": "%rstack-markdown-image.base.fileNameFormat%",
             "order": 5,
             "pattern": "^[^:*?<>|]+$",
             "type": "string"
           },
-          "markdown-image.base.altFormat": {
-            "default": "%markdown-image.base.altFormat.default%",
-            "markdownDescription": "%markdown-image.base.altFormat%",
+          "rstack-markdown-image.base.altFormat": {
+            "default": "%rstack-markdown-image.base.altFormat.default%",
+            "markdownDescription": "%rstack-markdown-image.base.altFormat%",
             "order": 6,
             "type": "string"
           },
-          "markdown-image.base.imageWidth": {
+          "rstack-markdown-image.base.imageWidth": {
             "default": 0,
-            "markdownDescription": "%markdown-image.base.imageWidth%",
+            "markdownDescription": "%rstack-markdown-image.base.imageWidth%",
             "order": 4,
             "type": "number"
           },
-          "markdown-image.base.uploadMethod": {
+          "rstack-markdown-image.base.uploadMethod": {
             "default": "GitHub",
             "enum": [
               "GitHub"
             ],
             "enumDescriptions": [
-              "%markdown-image.base.uploadMethod.GitHub%"
+              "%rstack-markdown-image.base.uploadMethod.GitHub%"
             ],
-            "markdownDescription": "%markdown-image.base.uploadMethod%",
+            "markdownDescription": "%rstack-markdown-image.base.uploadMethod%",
             "order": 0,
             "type": "string"
           },
-          "markdown-image.base.uploadMethods": {
+          "rstack-markdown-image.base.uploadMethods": {
             "default": [],
-            "markdownDescription": "%markdown-image.base.uploadMethods%",
+            "markdownDescription": "%rstack-markdown-image.base.uploadMethods%",
             "order": 1,
             "type": "array",
             "items": {
@@ -132,15 +132,15 @@
               ]
             }
           },
-          "markdown-image.base.urlEncode": {
+          "rstack-markdown-image.base.urlEncode": {
             "default": true,
-            "markdownDescription": "%markdown-image.base.urlEncode%",
+            "markdownDescription": "%rstack-markdown-image.base.urlEncode%",
             "order": 7,
             "type": "boolean"
           },
-          "markdown-image.base.fileFormat": {
+          "rstack-markdown-image.base.fileFormat": {
             "default": "png",
-            "markdownDescription": "%markdown-image.base.fileFormat%",
+            "markdownDescription": "%rstack-markdown-image.base.fileFormat%",
             "enum": [
               "png",
               "jpg"
@@ -148,15 +148,15 @@
             "order": 8,
             "type": "string"
           },
-          "markdown-image.base.compressEnabled": {
+          "rstack-markdown-image.base.compressEnabled": {
             "default": true,
-            "markdownDescription": "%markdown-image.base.compressEnabled%",
+            "markdownDescription": "%rstack-markdown-image.base.compressEnabled%",
             "order": 9,
             "type": "boolean"
           },
-          "markdown-image.base.compressQuality": {
+          "rstack-markdown-image.base.compressQuality": {
             "default": 80,
-            "markdownDescription": "%markdown-image.base.compressQuality%",
+            "markdownDescription": "%rstack-markdown-image.base.compressQuality%",
             "minimum": 10,
             "maximum": 100,
             "order": 10,
@@ -167,19 +167,19 @@
       },
       {
         "properties": {
-          "markdown-image.github.branch": {
+          "rstack-markdown-image.github.branch": {
             "default": "main",
-            "markdownDescription": "%markdown-image.github.branch%",
+            "markdownDescription": "%rstack-markdown-image.github.branch%",
             "order": 4,
             "type": "string"
           },
-          "markdown-image.github.cdn": {
+          "rstack-markdown-image.github.cdn": {
             "default": "https://assets.rspack.dev/${filepath}",
-            "markdownDescription": "%markdown-image.github.cdn%",
+            "markdownDescription": "%rstack-markdown-image.github.cdn%",
             "order": 5,
             "type": "string"
           },
-          "markdown-image.github.scope": {
+          "rstack-markdown-image.github.scope": {
             "default": "rspack",
             "enum": [
               "others",
@@ -191,32 +191,32 @@
               "rstack",
               "rstest"
             ],
-            "markdownDescription": "%markdown-image.github.scope%",
+            "markdownDescription": "%rstack-markdown-image.github.scope%",
             "order": 0,
             "type": "string"
           },
-          "markdown-image.github.path": {
+          "rstack-markdown-image.github.path": {
             "default": "/assets/",
-            "markdownDescription": "%markdown-image.github.path%",
+            "markdownDescription": "%rstack-markdown-image.github.path%",
             "order": 1,
             "type": "string"
           },
-          "markdown-image.github.repository": {
+          "rstack-markdown-image.github.repository": {
             "default": "https://github.com/rspack-contrib/rstack-design-resources",
-            "markdownDescription": "%markdown-image.github.repository%",
+            "markdownDescription": "%rstack-markdown-image.github.repository%",
             "order": 3,
             "pattern": "^(https://github.com/[^/]*?/[^/]*?/*|)$",
             "type": "string"
           },
-          "markdown-image.github.token": {
+          "rstack-markdown-image.github.token": {
             "default": "",
-            "markdownDescription": "%markdown-image.github.token%",
+            "markdownDescription": "%rstack-markdown-image.github.token%",
             "order": 2,
             "type": "string"
           },
-          "markdown-image.github.httpProxy": {
+          "rstack-markdown-image.github.httpProxy": {
             "default": "",
-            "markdownDescription": "%markdown-image.github.httpProxy%",
+            "markdownDescription": "%rstack-markdown-image.github.httpProxy%",
             "order": 6,
             "type": "string"
           }
