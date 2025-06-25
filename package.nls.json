@@ -9,6 +9,8 @@
   "markdown-image.base.fileNameFormat": "The filenname and path format string for upload. You can use some variables: \n\n- `${filename}`: The original filename.  \n- `${mdname}`: The name of the Markdown file being edited.  \n- `${path}`: The path of the Markdown file being edited relative to the root directory.  \n- `${hash}`: The sha256 hash of image.  \n- `${timestamp}`: The timestamp of upload time.  \n- `${YY}`: The Year  \n- `${MM}`:The Month  \n- `${DD}`: The Day  \n- `${hh}`: The 12-hour clock  \n- `${HH}`: The 24-hour clock  \n- `${mm}`: The minutes  \n- `${ss}`: The seconds  \n- `${mss}`: The milliseconds  \n- `${rand,number}`: A random number, for example: `${rand,100}`. It will generate random numbers from 0 to 99 \n- `${prompt}`: Makes it possible to enter a custom name through an input prompt when pasting the image.",
   "markdown-image.base.urlEncode": "Whether URL encode for the url of image.",
   "markdown-image.base.fileFormat": "The Clipboard Image File Format. You can use `png` or `jpg`.",
+  "markdown-image.base.compressEnabled": "Enable image compression to reduce file size before uploading.",
+  "markdown-image.base.compressQuality": "JPEG compression quality (10-100). Lower values result in smaller file sizes but lower image quality.",
   "markdown-image.base.codeType": "The type of image code",
   "markdown-image.base.codeType.Markdown": "Markdown Code as: ![image](./image/file/path.jpg)",
   "markdown-image.base.codeType.HTML": "HTML Code as: <img alt=\"image\" src=\"./image/file/path.jpg\" />",

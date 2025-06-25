@@ -8,6 +8,7 @@ A specialized fork of [imlinhanchao/vsc-markdown-image](https://github.com/imlin
 
 - **GitHub Only**: Streamlined to only support GitHub uploads
 - **Project Scopes**: Organize images by project (rspack, rsbuild, rsdoctor, etc.)
+- **Image Compression**: Automatic compression to reduce file size before uploading
 - **Smart Token Management**: Automatic GitHub token setup with browser integration
 - **Easy Upload**: `Alt + Shift + V` to upload clipboard images
 
@@ -64,6 +65,8 @@ The extension comes with the following default settings:
   "markdown-image.base.altFormat": "picture ${index}",
   "markdown-image.base.urlEncode": true,
   "markdown-image.base.fileFormat": "png",
+  "markdown-image.base.compressEnabled": true,
+  "markdown-image.base.compressQuality": 80,
 
   // GitHub Settings
   "markdown-image.github.scope": "rspack",

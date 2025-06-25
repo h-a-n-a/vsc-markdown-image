@@ -53,6 +53,20 @@ export function activate(context: vscode.ExtensionContext) {
           images[0] = await utils.convertImage(images[0]);
         }
 
+        // Apply compression if enabled
+        if (config.base.compressEnabled) {
+          for (let i = 0; i < images.length; i++) {
+            try {
+              images[i] = await utils.compressImage(
+                images[i],
+                config.base.compressQuality || 80
+              );
+            } catch (error) {
+              console.warn(`Failed to compress image ${images[i]}:`, error);
+            }
+          }
+        }
+
         let urls = [],
           maxWidth = [];
         for (let i = 0; i < images.length; i++) {

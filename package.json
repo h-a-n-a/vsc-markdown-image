@@ -147,6 +147,20 @@
             ],
             "order": 8,
             "type": "string"
+          },
+          "markdown-image.base.compressEnabled": {
+            "default": true,
+            "markdownDescription": "%markdown-image.base.compressEnabled%",
+            "order": 9,
+            "type": "boolean"
+          },
+          "markdown-image.base.compressQuality": {
+            "default": 80,
+            "markdownDescription": "%markdown-image.base.compressQuality%",
+            "minimum": 10,
+            "maximum": 100,
+            "order": 10,
+            "type": "number"
           }
         },
         "title": "Base"
@@ -223,6 +237,7 @@
     "@types/mocha": "^2.2.42",
     "@types/node": "^8.10.25",
     "@types/node-fetch": "^2.5.12",
+    "@types/sharp": "^0.31.1",
     "@types/turndown": "^5.0.0",
     "tslint": "^5.8.0",
     "typescript": "4.1",
@@ -237,6 +252,7 @@
     "mime": "^3.0.0",
     "node-fetch": "^2.6.6",
     "png-to-jpeg": "^1.0.1",
+    "sharp": "^0.34.2",
     "turndown": "^7.0.0",
     "turndown-plugin-gfm": "^1.0.2",
     "vscode-nls": "^4.1.2"

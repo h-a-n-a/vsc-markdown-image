@@ -10,6 +10,7 @@ import i18n from '../i18n/index';
 import * as TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
 import * as pngToJpeg from 'png-to-jpeg';
+import * as sharp from 'sharp';
 
 let pkg = packages as any;
 let locale = i18n();
@@ -634,6 +635,58 @@ function convertImage(imagePath: string): Promise<string> {
   });
 }
 
+function compressImage(
+  imagePath: string,
+  quality: number = 80
+): Promise<string> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const ext = path.extname(imagePath).toLowerCase();
+      const outputPath = path.join(
+        path.dirname(imagePath),
+        path.basename(imagePath, ext) + '_compressed' + ext
+      );
+
+      const image = sharp(imagePath);
+
+      if (ext === '.jpg' || ext === '.jpeg') {
+        await image.jpeg({ quality }).toFile(outputPath);
+      } else if (ext === '.png') {
+        await image
+          .png({
+            compressionLevel: Math.round((100 - quality) / 10),
+            quality,
+          })
+          .toFile(outputPath);
+      } else if (ext === '.webp') {
+        await image.webp({ quality }).toFile(outputPath);
+      } else {
+        // For other formats, convert to JPEG
+        const jpegPath = path.join(
+          path.dirname(imagePath),
+          path.basename(imagePath, ext) + '_compressed.jpg'
+        );
+        await image.jpeg({ quality }).toFile(jpegPath);
+        resolve(jpegPath);
+        return;
+      }
+
+      // Check if compression actually reduced file size
+      const originalSize = fs.statSync(imagePath).size;
+      const compressedSize = fs.statSync(outputPath).size;
+
+      if (compressedSize < originalSize) {
+        resolve(outputPath);
+      } else {
+        fs.unlinkSync(outputPath);
+        resolve(imagePath);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 function sleep(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
@@ -732,6 +785,7 @@ export default {
   getCurrentFilePath,
   getTmpFolder,
   convertImage,
+  compressImage,
   noticeComment,
   sleep,
   confirm,
