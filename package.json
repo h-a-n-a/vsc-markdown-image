@@ -1,9 +1,8 @@
 {
-  "name": "markdown-image",
-  "displayName": "Markdown Image",
-  "description": "Easy to insert a image to markdown",
+  "name": "rstack-markdown-image",
+  "displayName": "Rstack Markdown Image",
+  "description": "Streamlined markdown image uploader for Rspack ecosystem projects",
   "version": "1.1.49",
-  "publisher": "hancel",
   "engines": {
     "vscode": "^1.62.0"
   },
@@ -22,7 +21,7 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
-  "repository": "https://github.com/imlinhanchao/vsc-markdown-image",
+  "repository": "https://github.com/h-a-n-a/rstack-markdown-image",
   "main": "./out/extension",
   "contributes": {
     "commands": [

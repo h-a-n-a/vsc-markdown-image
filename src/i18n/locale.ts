@@ -35,7 +35,7 @@ export default {
   open_settings: 'Open Settings',
   cancel: 'Cancel',
   input_github_token_prompt: 'Please enter your GitHub personal access token:',
-  github_token_placeholder: 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  github_token_placeholder: 'ghp_[token-placeholder]',
   github_token_empty_error: 'GitHub token cannot be empty',
   github_token_too_short_error: 'GitHub token seems too short, please check',
   github_token_saved: 'GitHub token has been saved successfully!',

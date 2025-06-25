@@ -1,0 +1,100 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        description: 'Release notes'
+        required: false
+        type: string
+        default: 'New release'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install VSCE
+        run: npm install -g @vscode/vsce
+
+      - name: Compile extension
+        run: npm run compile
+
+      - name: Package extension
+        run: vsce package
+
+      - name: Get package info
+        id: package
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          VSIX_FILE="${PACKAGE_NAME}-${PACKAGE_VERSION}.vsix"
+          VERSION_TAG="v${PACKAGE_VERSION}"
+          echo "name=${PACKAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "version=${PACKAGE_VERSION}" >> $GITHUB_OUTPUT
+          echo "version_tag=${VERSION_TAG}" >> $GITHUB_OUTPUT
+          echo "vsix_file=${VSIX_FILE}" >> $GITHUB_OUTPUT
+          echo "📦 Package: ${PACKAGE_NAME}"
+          echo "🏷️ Version: ${VERSION_TAG}"
+
+      - name: Verify VSIX file exists
+        run: |
+          if [ ! -f "${{ steps.package.outputs.vsix_file }}" ]; then
+            echo "VSIX file not found: ${{ steps.package.outputs.vsix_file }}"
+            exit 1
+          fi
+          echo "VSIX file found: ${{ steps.package.outputs.vsix_file }}"
+          ls -la *.vsix
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.package.outputs.version_tag }}
+          release_name: Release ${{ steps.package.outputs.version_tag }}
+          body: |
+            ## Release ${{ steps.package.outputs.version_tag }}
+
+            ${{ inputs.release_notes }}
+
+            ### Installation
+            Download the `.vsix` file and install via:
+            ```bash
+            code --install-extension ${{ steps.package.outputs.vsix_file }}
+            ```
+
+            Or install from VSCode Extensions view by selecting "Install from VSIX..."
+          draft: false
+          prerelease: false
+
+      - name: Upload VSIX to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ steps.package.outputs.vsix_file }}
+          asset_name: ${{ steps.package.outputs.vsix_file }}
+          asset_content_type: application/zip
+
+      - name: Release Summary
+        run: |
+          echo "🎉 Release ${{ steps.package.outputs.version_tag }} created successfully!"
+          echo "📦 Package: ${{ steps.package.outputs.vsix_file }}"
+          echo "🔗 Release URL: ${{ steps.create_release.outputs.html_url }}"
